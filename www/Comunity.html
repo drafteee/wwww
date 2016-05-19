@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>InfoCity</title>
+
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/styleComunity.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.css">
+</head>
+<body>
+  <div id="page_align" class="b3radius">
+    <div class="container">
+      <div id="header">
+        <div class="header_top">
+          <div class="top_left">
+            <ul class="sidebar">
+              <li>
+                <a href="index.html">Главная</a>
+              </li>
+              <li>
+               <a href="Discussions.html">Обсуждения</a>
+             </li>
+              <li>
+               <a href="#">Общение</a>
+              </li>
+              <li>
+                <a href="Offer.html">Предложить</a>
+              </li>
+              <li>
+                <a href="Users.html">Пользователи</a>
+              </li>
+            </ul> 
+            <div class="top_right">
+              <div id="btn_auth">
+                <button type="button" class="btn btn_authorization"><i class="fa fa-home fa-3x"></i></button>
+              </div>
+            </div>
+        </div>      
+      </div>
+      <div class="header_bottom">
+        <div class="bottom_left">
+          <h1 id="h_InfoCity" >
+            <span  style="color: #035f2e">Info</span><span style="color: #434343">City</span>
+          </h1>
+        </div>
+        <div class="bottom_right right">
+          <div id="btn_registr">
+            <button type="button " class="btn btn_registration" href="#modal1"><i class="fa fa-user-plus"></i>   <span>Registration</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      <div class="content_left">
+        <div class="list_users b3radius">
+          <div class="online_user_1">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_2">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_3">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_4">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_5">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_6">
+            <a href="#">user_1</a>
+          </div>
+          <div class="online_user_7">
+            <a href="#">user_1</a>
+          </div>
+        </div>
+        <button class="update_users">
+          Обновить
+        </button>
+      </div>
+      <div class="content_right ">  
+        <div class="content_right_top">
+          <div class="chat b3radius">
+            
+          </div>
+        </div>
+        <div class="content_right_bottom">
+          <div class="input_message">
+            <input class="text_box">
+            <button class="btn Send">
+              OK
+            </button>
+          </div>
+         </div> 
+      </div>  
+    </div>
+    <div id="footer">
+      <div class="footer_text"><h1>&#xa9; S.K.</h1></div>
+    </div>
+    </div>
+  </div>
+  <div class="modal" id="modal1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close btn_close_pict" type="button">
+            <i class="fa fa-close"></i>
+          </button>
+          <h4 class="modal-title">name</h4>
+
+        </div>
+        <div class="modal-body">
+          <p>modal window</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default btn_close" type="button">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery.js"></script>
+
+  <script>
+  $(function() {
+
+
+        var $activeCheck = false;
+
+        function set_modal(e){
+          $(e).css('background-color',"rgba(0,0,0,0.5)");
+          $(e).css("opacity", 0);
+          $(e).css("display", "block");
+          $(e).animate({'opacity': 1}, 500, "swing", function() {
+            var doc_w = $(document).width();
+            var doc_h = $(document).height();
+            $(this).css("width",doc_w);
+            $(this).css("height",doc_h);
+            $(this).css("display", "block");
+        });
+        }
+
+        function set_content(e,s){
+          if($(s).hasClass("btn btn_registration")){
+          $(e + '> p').html('');
+        }
+        }
+//сделать модальное окно,все дивы для всех случаев
+        $('.btn.btn_registration,.content_body_list_news > .setting_new').on('click', function (event) {
+            set_modal('.modal');
+            console.log(this);
+
+            set_content('.modal-body',this);
+        });
+
+        $('.btn.btn_News').on('click', function(event){
+
+          if(!$activeCheck){
+            $('.side_bar_type_news').animate({'width': 250}, 250, "swing");
+        
+            $('.content_body_list_news').animate({'width': 750}, 250, "swing");
+            $activeCheck = true;
+            console.log("gdfg");
+          }
+          else
+          {
+            $('.side_bar_type_news').animate({'width': 0}, 250, "swing");
+        
+            $('.content_body_list_news').animate({'width': 1000}, 250, "swing");
+            $activeCheck = false;
+          }
+          });
+        $('.btn_close,.btn_close_pict').on('click', function (event) {
+            $('.modal').animate({'opacity': 0}, 500, "swing", function() {
+                $(this).css("display", "none");
+            });
+         });
+  })
+  </script>
+  <script src="js/salvattore.min.js"></script>
+</body>
+</html>
